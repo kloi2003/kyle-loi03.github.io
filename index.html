@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kyle Loi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Kyle J. Loi — neuroscience researcher working at the intersection of life science, strategy, and investment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky identity column on the left, a long reading column on the right; stacks to one column on phones.
+   Warm palette: sandstone neutrals, umber ink, a deep amber accent, brick for status marks. */
+:root {
+  --bg: #fcf9f4;
+  --surface: #f4ede2;
+  --ink: #2a211a;
+  --muted: #6e6156;
+  --rule: #e6dccd;
+  --accent: #9a5a12;
+  --accent-soft: #f3e3c9;
+  --rose: #a63d2a;
+  --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a1612; --surface: #241e18; --ink: #f1e9df; --muted: #b3a595;
+    --rule: #3a3028; --accent: #e3a659; --accent-soft: #3a2b1a; --rose: #e48a72;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1a1612; --surface: #241e18; --ink: #f1e9df; --muted: #b3a595;
+  --rule: #3a3028; --accent: #e3a659; --accent-soft: #3a2b1a; --rose: #e48a72;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 56px 72px;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 72px;
+}
+
+/* Identity column */
+.id { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 48px); align-self: start; display: flex; flex-direction: column; gap: 24px; }
+.id h1 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 2.75rem;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.headshot { width: 132px; height: 132px; max-width: 100%; border-radius: 50%; object-fit: cover; display: block; margin-bottom: 8px; box-shadow: 0 0 0 4px var(--accent-soft); }
+.id .role { margin: 0; color: var(--muted); font-size: 0.98rem; text-wrap: balance; }
+.id .loc { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.02em; margin: 0; }
+.id nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; border-left: 1px solid var(--rule); }
+.id nav a {
+  display: block; padding: 2px 0 2px 14px; margin-left: -1px;
+  border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: 0.92rem;
+}
+.id nav a:hover, .id nav a.on { color: var(--ink); border-left-color: var(--accent); }
+.contact { display: flex; flex-direction: column; gap: 10px; font-size: 0.92rem; }
+.email-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.email-row span { font-family: var(--mono); font-size: 0.84rem; user-select: all; }
+.copy {
+  font: 500 0.75rem var(--body); letter-spacing: 0.04em; text-transform: uppercase;
+  background: var(--accent-soft); color: var(--accent); border: 0; border-radius: 4px; padding: 4px 9px; cursor: pointer;
+}
+.copy:hover { filter: brightness(0.97); }
+.links { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Reading column */
+main { min-width: 0; display: flex; flex-direction: column; gap: 64px; }
+section { display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 32px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--muted); margin: 0; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+}
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.9rem; line-height: 1.2; margin: 0; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 1.25rem; line-height: 1.3; margin: 0; }
+p { margin: 0; max-width: 66ch; }
+.lede { font-family: var(--display); font-size: 1.45rem; line-height: 1.45; font-weight: 400; max-width: 34ch; text-wrap: balance; }
+.lede em { font-style: italic; color: var(--accent); }
+.prose { display: flex; flex-direction: column; gap: 14px; color: var(--ink); }
+
+/* Figures strip: only figures from the work itself */
+.figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.figures div { background: var(--bg); padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 4px; }
+.figures b { font-family: var(--display); font-weight: 500; font-size: 1.7rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.figures span { font-size: 0.8rem; color: var(--muted); line-height: 1.35; }
+
+/* Roles */
+.roles { display: flex; flex-direction: column; }
+.roleitem { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding-block: 22px; border-top: 1px solid var(--rule); }
+.roleitem:first-child { border-top: 0; padding-top: 4px; }
+.when { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.roleitem .body { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.org { font-size: 0.9rem; color: var(--muted); margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tags span { font-size: 0.74rem; padding: 2px 8px; border-radius: 3px; background: var(--surface); color: var(--muted); }
+
+/* Publications */
+.pubs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; counter-reset: pub; }
+.pubs li { counter-increment: pub; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 8px; padding-block: 14px; border-top: 1px solid var(--rule); }
+.pubs li:first-child { border-top: 0; }
+.pubs li::before { content: "[" counter(pub) "]"; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding-top: 3px; }
+.pubs .t { font-weight: 500; display: block; }
+.pubs .a { font-size: 0.88rem; color: var(--muted); display: block; }
+.pubs .a b { color: var(--ink); font-weight: 600; }
+.pubs .v { font-size: 0.86rem; display: block; margin-top: 2px; }
+.pubs .v i { font-style: italic; }
+.doi { font-family: var(--mono); font-size: 0.78rem; overflow-wrap: anywhere; }
+.status { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--rose); }
+.note { font-size: 0.82rem; color: var(--muted); }
+
+/* Talks */
+.talks { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.talks td { padding: 10px 12px 10px 0; border-top: 1px solid var(--rule); vertical-align: top; }
+.talks tr:first-child td { border-top: 0; }
+.talks td:first-child { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; width: 90px; font-variant-numeric: tabular-nums; }
+.talks .venue { color: var(--muted); display: block; font-size: 0.84rem; }
+.tablebox { overflow-x: auto; }
+
+/* Two-up */
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.panel { background: var(--surface); border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.panel ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 6px; font-size: 0.92rem; }
+.big { font-family: var(--display); font-size: 2.4rem; line-height: 1; color: var(--accent); font-weight: 500; }
+
+.skills { display: flex; flex-wrap: wrap; gap: 8px; }
+.skills span { font-size: 0.86rem; padding: 5px 11px; border: 1px solid var(--rule); border-radius: 999px; }
+
+footer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 20px; }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 48px; padding-block: 36px 56px; }
+  .id { position: static; }
+  .id nav { display: none; }
+  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .id h1 { font-size: 2.3rem; }
+  .lede { font-size: 1.25rem; }
+  .roleitem { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .two { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <aside class="id">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <img class="headshot" src="img/headshot.jpg" alt="Kyle Loi" width="480" height="480">
+      <h1>Kyle J. Loi</h1>
+      <p class="role">Neuroscience researcher working where life science meets strategy and investment.</p>
+      <p class="loc">San Francisco, CA</p>
+    </div>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#strategy">Strategy &amp; industry</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#talks">Presentations</a></li>
+        <li><a href="#beyond">Leadership</a></li>
+      </ul>
+    </nav>
+    <div class="contact">
+      <div class="email-row">
+        <span id="email">kloi2709@gmail.com</span>
+        <button class="copy" id="copy-email" type="button">Copy</button>
+      </div>
+      <div class="links">
+        <a href="https://github.com/kyle-loi03" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <section id="about">
+      <p class="eyebrow">About</p>
+      <p class="lede">I connect strong science to the <em>capital and strategy</em> it needs to reach patients.</p>
+      <div class="prose">
+        <p>I trained in neuroscience at the University of Michigan and spent four years in research labs, working on synthetic cell signaling, stem cell therapies for ALS, and the genetics of Alzheimer's disease. Before that I worked bedside as a patient care technician on psychiatric and cardiovascular units.</p>
+        <p>Both taught me the same thing. Whether a therapy or device reaches patients depends as much on markets, reimbursement, and strategy as on the data. I now work on that side of the problem: building market models, commercialization strategy, and investor materials for life science companies, and integrating lenders' business models into enterprise finance software at Alfa.</p>
+        <p>I'm most interested in roles that bridge research and business, as a scientist inside an early-stage company or on the strategy and investing side of life sciences.</p>
+      </div>
+      <div class="figures" aria-label="Selected figures">
+        <div><b>9</b><span>publications and manuscripts</span></div>
+        <div><b>8</b><span>conference presentations</span></div>
+        <div><b>61,883</b><span>billing records modeled for a medtech market forecast</span></div>
+        <div><b>$500K</b><span>pre-seed raise supported with investor materials</span></div>
+      </div>
+    </section>
+
+    <section id="strategy">
+      <p class="eyebrow">Strategy &amp; industry</p>
+      <div class="roles">
+        <article class="roleitem">
+          <div class="when">Sep 2026 – now</div>
+          <div class="body">
+            <h3>Market Analyst (Contract)</h3>
+            <p class="org">Medical Technology Strategy Consulting</p>
+            <p>Built a claims-based market model from 61,883 billing records across 1,695 hospitals and 6,253 clinicians, and a 10-year, three-scenario TAM forecast for an implantable brain-pressure sensor from a clinical-stage neurotech startup. Wrote the competitive landscape and a go-to-market strategy covering FDA timing, Medicare reimbursement pathways, and launch partnering options.</p>
+            <div class="tags"><span>Market sizing</span><span>Claims data</span><span>Reimbursement</span><span>Go-to-market</span></div>
+          </div>
+        </article>
+        <article class="roleitem">
+          <div class="when">Aug 2026 – now</div>
+          <div class="body">
+            <h3>Strategy &amp; Planning</h3>
+            <p class="org">HA Biosciences</p>
+            <p>Built five-year financial models and wrote executive strategy, commercialization strategy, and investment documents for a clinical-stage biotech startup. Directed design of a 16-slide pitch deck and the company's brand identity, and delivered investor-ready materials for a $500K pre-seed raise, with every claim checked against primary sources and clinical literature.</p>
+            <div class="tags"><span>Financial modeling</span><span>Fundraising</span><span>Commercialization</span></div>
+          </div>
+        </article>
+        <article class="roleitem">
+          <div class="when">Jul 2026 – now</div>
+          <div class="body">
+            <h3>Implementation Analyst</h3>
+            <p class="org">Alfa Financial Software</p>
+            <p>Integrate large financial institutions' business structures into Alfa Systems, an asset-finance platform used by major auto and equipment lenders. Maintain client configurations, adjust security policies, make data fixes, and work directly with clients on bespoke setups.</p>
+            <div class="tags"><span>Asset finance</span><span>Enterprise software</span><span>Client delivery</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="research">
+      <p class="eyebrow">Research</p>
+      <div class="roles">
+        <article class="roleitem">
+          <div class="when">Jan 2024 – Aug 2026</div>
+          <div class="body">
+            <h3>Research Technician</h3>
+            <p class="org">Feldman Lab, University of Michigan</p>
+            <p>Mapped and modeled cognitive dysfunction in Alzheimer's disease and other neurological diseases, including how diabetes, GLP-1, and cardiovascular disease affect central and peripheral nervous system impairment. Work spanned human stem cell transplantation in ALS models, interneuron transcriptomics, and single-cell RNA-seq analysis on high-performance computing clusters.</p>
+            <div class="tags"><span>scRNA-seq</span><span>Neurodegeneration</span><span>Stem cells</span><span>R / Seurat</span></div>
+          </div>
+        </article>
+        <article class="roleitem">
+          <div class="when">Jun 2022 – Aug 2024</div>
+          <div class="body">
+            <h3>Research Assistant</h3>
+            <p class="org">Liu Lab, University of Michigan</p>
+            <p>Used synthetic biology to study biophysical interactions between cells, building synthetic cell models to simulate light-activated and bioactivated therapeutics.</p>
+            <div class="tags"><span>Synthetic biology</span><span>Cell-free expression</span></div>
+          </div>
+        </article>
+        <article class="roleitem">
+          <div class="when">Jul 2022 – Oct 2023</div>
+          <div class="body">
+            <h3>Patient Care Technician</h3>
+            <p class="org">Michigan Medicine</p>
+            <p>Supported nursing care on the Psychiatric (240 hrs) and Cardiovascular Moderate Care (428 hrs) units: vital signs, nutrition, intake and output, bladder scanning, and catheter insertion. BLS certified.</p>
+          </div>
+        </article>
+      </div>
+      <div class="skills" aria-label="Skills">
+        <span>Python</span><span>R</span><span>Java</span><span>Bioinformatics &amp; biostatistics</span><span>Fiji / ImageJ</span><span>MetaMorph</span><span>PAST4</span><span>Financial modeling</span><span>Market forecasting</span>
+      </div>
+    </section>
+
+    <section id="publications">
+      <p class="eyebrow">Publications &amp; manuscripts</p>
+      <ol class="pubs">
+        <li><div>
+          <span class="t">Implantable pulse generator site pain following spinal cord stimulation: a case-control study</span>
+          <span class="a">Lam J. L. W.*, <b>Loi K. J.*</b>, Vedapudi V., Hameed M., Harake E. S., Chen K. S.</span>
+          <span class="v"><i>Operative Neurosurgery</i>, 2026 · <a class="doi" href="https://doi.org/10.1227/ons.0000000000001914" target="_blank" rel="noopener">10.1227/ons.0000000000001914</a></span>
+        </div></li>
+        <li><div>
+          <span class="t">Human stem cell transplantation, immunosuppression, and noninvasive in vivo cell tracking in the mouse brain</span>
+          <span class="a">Chen K. S., <b>Loi K. J.</b>, McGinley L. M., Kashlan O. N., Rigan D. M., Mason S. N., Kwentus J. F., Carter A. D., Savelieff M. G., Feldman E. L.</span>
+          <span class="v"><i>Current Protocols</i> 6, e70442, 2026 · <a class="doi" href="https://doi.org/10.1002/cpz1.70442" target="_blank" rel="noopener">10.1002/cpz1.70442</a></span>
+        </div></li>
+        <li><div>
+          <span class="t">Shared genes and pathways in dementia: insights from genome-wide association studies</span>
+          <span class="a"><b>Loi K. J.</b>, Radtke N., Kiriluk C., Noureldein M. H., Feldman E. L., Bakulski K. M., Chen K. S.</span>
+          <span class="v"><i>Alzheimer's &amp; Dementia</i> 21(11), e70845, 2025 · <a class="doi" href="https://doi.org/10.1002/alz.70845" target="_blank" rel="noopener">10.1002/alz.70845</a></span>
+        </div></li>
+        <li><div>
+          <span class="t">Interneuron transcriptomics reveals pathologic markers of Alzheimer's disease progression</span>
+          <span class="a">Chen K. S., Noureldein M. H., Rigan D. M., Hayes J. M., <b>Loi K. J.</b>, Hur J., Savelieff M. G., Feldman E. L.</span>
+          <span class="v"><i>Neurobiology of Disease</i> 213, 107012, 2025 · <a class="doi" href="https://doi.org/10.1016/j.nbd.2025.107012" target="_blank" rel="noopener">10.1016/j.nbd.2025.107012</a></span>
+        </div></li>
+        <li><div>
+          <span class="t">Light-based juxtacrine signaling between synthetic cells</span>
+          <span class="a">Moghimianavval H., <b>Loi K. J.</b>, Hwang S., Bashirzadeh Y., Liu A. P.</span>
+          <span class="v"><i>Small Science</i>, 2024 · <a class="doi" href="https://doi.org/10.1002/smsc.202400401" target="_blank" rel="noopener">10.1002/smsc.202400401</a></span>
+        </div></li>
+        <li><div>
+          <span class="t">Reconstitution of the bacterial glutamate receptor channel by encapsulation of a cell-free expression system</span>
+          <span class="a"><b>Loi K. J.*</b>, Moghimianavval H.*, Liu A. P.</span>
+          <span class="v"><i>Journal of Visualized Experiments</i> (205), 2024 · <a class="doi" href="https://doi.org/10.3791/66595" target="_blank" rel="noopener">10.3791/66595</a></span>
+        </div></li>
+        <li><div>
+          <span class="t">Thromboembolic outcomes are decreased with a standardized venous thromboembolism risk assessment and prophylaxis protocol for superficial venous procedures</span>
+          <span class="a">Braet D. J., <b>Loi K.</b>, Stabler C., Vemuri C., Coleman D. M., Obi A. T., Wakefield T. W.</span>
+          <span class="v"><i>J. Vascular Surgery: Venous and Lymphatic Disorders</i> 11(5), 928–937, 2023 · <a class="doi" href="https://doi.org/10.1016/j.jvsv.2023.04.008" target="_blank" rel="noopener">10.1016/j.jvsv.2023.04.008</a></span>
+        </div></li>
+        <li><div>
+          <span class="t">Inhibitory synapses represent a therapeutic mechanism for human spinal cord stem cells in ALS</span>
+          <span class="a">Chen K. S., <b>Loi K. J.</b>, McGinley L. M., et al., Feldman E. L.</span>
+          <span class="v"><span class="status">In preparation</span></span>
+        </div></li>
+        <li><div>
+          <span class="t">Placement for optimal stimulation parameters during DBS treatment of Parkinson's disease: effect of intraoperative microelectrode recording</span>
+          <span class="a">Hagood M., Baumhauer M., <b>Loi K. J.</b>, Staudt M. D., Chen K. S., Hoyt A.</span>
+          <span class="v"><span class="status">In preparation</span></span>
+        </div></li>
+      </ol>
+      <p class="note">* Co-first author</p>
+    </section>
+
+    <section id="talks">
+      <p class="eyebrow">Presentations</p>
+      <div class="tablebox">
+        <table class="talks">
+          <tr><td>Dec 2025</td><td>Inhibitory synapses represent a therapeutic mechanism for human spinal cord stem cells in ALS<span class="venue">36th International Symposium on ALS/MND · San Diego</span></td></tr>
+          <tr><td>Feb 2025</td><td>Risk determination in pediatrics for venous thromboembolism (oral)<span class="venue">American Venous Forum · Atlanta</span></td></tr>
+          <tr><td>Sep 2024</td><td>Pathways of inhibitory interneuron dysregulation in 5XFAD mice<span class="venue">Alzheimer's Association International Conference · Toronto</span></td></tr>
+          <tr><td>Sep 2024</td><td>Implantable pulse generator site pain following spinal cord stimulation<span class="venue">World Society for Stereotactic and Functional Neurosurgery · Chicago</span></td></tr>
+          <tr><td>May 2023</td><td>Contact-dependent synthetic cell communication via light-inducible dimers<span class="venue">SynCell 2023 · Minneapolis</span></td></tr>
+          <tr><td>Feb 2023</td><td>A synthetic biology tool for contact-dependent synthetic cell communication<span class="venue">Biophysical Society Annual Meeting · San Diego</span></td></tr>
+          <tr><td>Feb 2023</td><td>Risk determination in postpartum obstetric patients for venous thromboembolism<span class="venue">American Venous Forum · San Antonio</span></td></tr>
+          <tr><td>Feb 2023</td><td>Outcomes associated with procedure type after superficial venous procedures<span class="venue">American Venous Forum · San Antonio</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="beyond">
+      <p class="eyebrow">Leadership &amp; recognition</p>
+      <div class="two">
+        <div class="panel">
+          <span class="big">3×</span>
+          <h3>CCS National Champions</h3>
+          <p style="font-size:0.92rem">As President, Administrative Chair, and Head Coach of Michigan Club Swimming (2022–2026), I restructured the executive board to run a team of 200+ members, created outreach and fundraising roles that raised over $2,000 for community initiatives, and led the team to three College Club Swimming national titles. National qualifier, 2022–2025.</p>
+        </div>
+        <div class="panel">
+          <h3>Awards &amp; service</h3>
+          <ul>
+            <li>Tauber Family Student Internship, NeuroNetwork for Emerging Therapies (2024)</li>
+            <li>Northrop Grumman Corporation Scholarship (2021–2024)</li>
+            <li>Health First Cape Canaveral Hospital Auxiliary Scholarship</li>
+            <li>Collaborative course designer, BIO 173 General Biology Lab (2022–2023)</li>
+            <li>Hand-hygiene observer, Michigan Medicine Infection Prevention (2022–2025)</li>
+            <li>Volunteer, Michigan Medicine and Food Gatherers (2023–2025)</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:0.92rem;color:var(--muted)">B.S. Neuroscience, minor in Creative Writing (Nonfiction), University of Michigan, 2024.</p>
+    </section>
+
+    <footer>© 2026 Kyle J. Loi · San Francisco</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var email = document.getElementById('email');
+  btn.addEventListener('click', function () {
+    var text = email.textContent.trim();
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      }, selectIt);
+    } catch (e) { selectIt(); }
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.id nav a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id); });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
